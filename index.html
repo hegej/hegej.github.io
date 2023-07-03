@@ -35,6 +35,13 @@
       html, body {
         height: 100%;
       }
+      .command {
+        color: white;
+      }
+      .description {
+        color: grey;
+        font-style: italic;
+      }
     </style>
   </head>
   <body>
@@ -95,9 +102,9 @@
         "help": function() {
           terminal.innerHTML += "<p>Available commands:</p>";
           terminal.innerHTML += "<ul>";
-          terminal.innerHTML += "<li><span class='command'>get-resume:</span> <span class='description'>Fetches the 'MyResume.html' file and displays it in the terminal.</span></li>";
-          terminal.innerHTML += "<li><span class='command'>clear:</span> <span class='description'>Clears the terminal.</span></li>";
-          terminal.innerHTML += "<li><span class='command'>help:</span> <span class='description'>Displays a list of available commands.</span></li>";
+          terminal.innerHTML += "<li><span class='command'>get-resume</span> <span class='description'> - Fetches the 'MyResume.html' file and displays it in the terminal.</span></li>";
+          terminal.innerHTML += "<li><span class='command'>clear</span> <span class='description'> - Clears the terminal.</span></li>";
+          terminal.innerHTML += "<li><span class='command'>help</span> <span class='description'> - Displays a list of available commands.</span></li>";
           terminal.innerHTML += "</ul>";
         }
       };
