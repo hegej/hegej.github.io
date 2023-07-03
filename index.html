@@ -31,6 +31,10 @@
         position: absolute;
         bottom: 0;
       }
+      /* Set the height of the body to 100% */
+      html, body {
+        height: 100%;
+      }
     </style>
   </head>
   <body>
@@ -53,14 +57,13 @@
       };
       input.addEventListener("keydown", function(event) {
         if (event.key === "Enter") {
-          var command = input.value.trim();
-          input.value = "";
-          terminal.innerHTML += "<p>$ " + command + "</p>";
+          var command = input.value;
           if (commands[command]) {
             commands[command]();
           } else {
-            terminal.innerHTML += "<p>Command not found</p>";
+            terminal.innerHTML += "<p>" + command + ": command not found</p>";
           }
+          input.value = "";
         }
       });
     </script>
