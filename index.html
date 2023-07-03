@@ -123,6 +123,7 @@
           .then(response => response.text())
           .then(data => {
             terminal.innerHTML += "<pre>" + data + "</pre>";
+            scroll();
           });
       },
         "clear": function () {
@@ -131,6 +132,7 @@
         terminal.innerHTML = "";
         terminal.appendChild(asciiArt);
         terminal.appendChild(helpMessage);
+        scroll();
       },
       "help": function () {
         terminal.innerHTML += "<p>Available commands:</p>";
@@ -139,8 +141,17 @@
         terminal.innerHTML += "<li><span class='command'>clear :</span> <span class='description'> Clears the terminal.</span></li>";
         terminal.innerHTML += "<li><span class='command'>help :</span> <span class='description'> Displays a list of available commands.</span></li>";
         terminal.innerHTML += "</ul>";
+        scroll();
+      },
+      "scroll": function () {
+        scroll();
       }
     };
+
+    function scroll() {
+      terminal.scrollTop = terminal.scrollHeight;
+    }
+
     input.addEventListener("keydown", function (event) {
       if (event.key === "Enter") {
         var command = input.value;
