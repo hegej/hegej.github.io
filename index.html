@@ -14,7 +14,7 @@
         position: absolute;
         top: 0;
         right: 0;
-        bottom: 0;
+        bottom: 50px;
         left: 0;
         overflow-y: scroll;
         padding: 10px;
@@ -82,7 +82,7 @@
       var terminal = document.getElementById("terminal");
       var input = document.getElementById("input");
       var commands = {
-        "MyResume": function() {
+        "get-resume": function() {
           fetch("MyResume.html")
             .then(response => response.text())
             .then(data => {
