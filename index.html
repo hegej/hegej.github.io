@@ -53,6 +53,10 @@
         },
         "clear": function() {
           terminal.innerHTML = "";
+        },
+        "help": function() {
+          var commandList = Object.keys(commands).join(", ");
+          terminal.innerHTML += "<p>Available commands: " + commandList + "</p>";
         }
       };
       input.addEventListener("keydown", function(event) {
