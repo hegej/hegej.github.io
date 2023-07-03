@@ -119,6 +119,7 @@
     var input = document.getElementById("input");
     var commands = {
       "get-resume": function () {
+        terminal.innerHTML = ""; // clear the terminal window
         fetch("MyResume.html")
           .then(response => response.text())
           .then(data => {
@@ -126,7 +127,7 @@
             scroll();
           });
       },
-        "clear": function () {
+      "clear": function () {
         var asciiArt = terminal.querySelector("pre");
         var helpMessage = terminal.querySelector("p");
         terminal.innerHTML = "";
