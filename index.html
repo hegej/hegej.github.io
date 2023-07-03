@@ -5,11 +5,17 @@
     <style>
       body {
         font-family: monospace;
+        margin: 0;
+        padding: 0;
       }
       #terminal {
         background-color: black;
         color: white;
-        height: 400px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
         overflow-y: scroll;
         padding: 10px;
       }
@@ -22,6 +28,8 @@
         width: 100%;
         padding: 10px;
         box-sizing: border-box;
+        position: absolute;
+        bottom: 0;
       }
     </style>
   </head>
@@ -38,6 +46,9 @@
             .then(data => {
               terminal.innerHTML += "<pre>" + data + "</pre>";
             });
+        },
+        "clear": function() {
+          terminal.innerHTML = "";
         }
       };
       input.addEventListener("keydown", function(event) {
