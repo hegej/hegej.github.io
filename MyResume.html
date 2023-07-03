@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Resume</title>
+  </head>
+  <body>
+    <h1 id="name">Hege Jacobsen</h1>
+    <h2 id="job-title">Software Engineer</h2>
+    <p>Email: <a href="mailto:alias@domain.com" id="email">alias@domain.com</a></p>
+    <p>Phone: <a href="tel:number" id="phone">number</a></p>
+    <hr>
+    <h3>Summary</h3>
+    <p id="summary">A highly motivated software Engineer with experience in web development and a passion for creating efficient and scalable applications.</p>
+    <h3>Skills</h3>
+    <ul id="skills">
+      <li>HTML/CSS</li>
+      <li>JavaScript</li>
+      <li>React</li>
+      <li>Node.js</li>
+      <li>SQL</li>
+    </ul>
+    <h3>Experience</h3>
+    <ul id="experience">
+      <li>
+        <h4>Software Developer, XYZ Company</h4>
+        <p>June 2018 - Present</p>
+        <ul>
+          <li>Developed and maintained web applications using React and Node.js</li>
+          <li>Collaborated with team members to design and implement new features</li>
+          <li>Optimized application performance through code refactoring and database optimization</li>
+        </ul>
+      </li>
+      <li>
+        <h4>Web Developer, ABC Company</h4>
+        <p>January 2016 - May 2018</p>
+        <ul>
+          <li>Designed and developed responsive websites using HTML/CSS and JavaScript</li>
+          <li>Managed website content and performed regular updates</li>
+          <li>Provided technical support to clients</li>
+        </ul>
+      </li>
+    </ul>
+    <h3>Education</h3>
+    <ul id="education">
+      <li>
+        <h4>Bachelor of Science in Computer Science, University of XYZ</h4>
+        <p>Graduated May 2016</p>
+      </li>
+    </ul>
+    <script>
+      // Update name
+      document.getElementById("name").addEventListener("click", function() {
+        this.innerHTML = "John Doe";
+      });
+
+      // Update job title
+      document.getElementById("job-title").addEventListener("click", function() {
+        this.innerHTML = "Full Stack Developer";
+      });
+
+      // Update email
+      document.getElementById("email").addEventListener("click", function() {
+        this.innerHTML = "john.doe@example.com";
+        this.setAttribute("href", "mailto:john.doe@example.com");
+      });
+
+      // Update phone number
+      document.getElementById("phone").addEventListener("click", function() {
+        this.innerHTML = "555-555-5555";
+        this.setAttribute("href", "tel:555-555-5555");
+      });
+
+      // Add skill
+      document.getElementById("add-skill").addEventListener("click", function() {
+        var skill = prompt("Enter a new skill:");
+        if (skill) {
+          var li = document.createElement("li");
+          li.innerHTML = skill;
+          document.getElementById("skills").appendChild(li);
+        }
+      });
+
+      // Add experience
+      document.getElementById("add-experience").addEventListener("click", function() {
+        var company = prompt("Enter the company name:");
+        var position = prompt("Enter your position:");
+        var dates = prompt("Enter the dates of employment:");
+        var description = prompt("Enter a description of your experience:");
+        if (company && position && dates && description) {
+          var li = document.createElement("li");
+          li.innerHTML = "<h4>" + company + "</h4><p>" + dates + "</p><ul><li>" + position + "</li><li>" + description + "</li></ul>";
+          document.getElementById("experience").appendChild(li);
+        }
+      });
+
+      // Add education
+      document.getElementById("add-education").addEventListener("click", function() {
+        var school = prompt("Enter the school name:");
+        var degree = prompt("Enter your degree:");
+        var dates = prompt("Enter the dates of attendance:");
+        if (school && degree && dates) {
+          var li = document.createElement("li");
+          li.innerHTML = "<h4>" + degree + ", " + school + "</h4><p>" + dates + "</p>";
+          document.getElementById("education").appendChild(li);
+        }
+      });
+    </script>
+    <button id="add-skill">Add Skill</button>
+    <button id="add-experience">Add Experience</button>
+    <button id="add-education">Add Education</button>
+  </body>
+</html>
