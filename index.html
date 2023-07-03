@@ -109,6 +109,9 @@
       var input = document.getElementById("input");
       var commands = {
         "get-resume": function() {
+          clearTerminal();
+          const iframe = document.querySelector("iframe");
+          iframe.style.display = "block";
           fetch("MyResume.html")
             .then(response => response.text())
             .then(data => {
