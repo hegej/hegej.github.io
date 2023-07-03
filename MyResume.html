@@ -1,148 +1,95 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>My Resume</title>
-    <style>
-      /* CSS styles */
-    </style>
-  </head>
-  <body>
-    <div id="chatbot">
-      <h1>Welcome to my resume!</h1>
-      <p>Ask me questions to reveal the content.</p>
-      <button id="reveal-button">Reveal Content</button>
+<head>
+  <title>My Resume</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>My Resume</h1>
+  <p>Welcome to my resume! Click the chatbot icon to ask me questions about my experience and skills.</p>
+  <div id="resume">
+    <img src="profile-pic.jpg" alt="Profile picture">
+    <button id="chatbot"><img src="chatbot-icon.png" alt="Chatbot icon"></button>
+    <div id="input" style="display: none;">
+      <form>
+        <input type="text" placeholder="Type your question here..." autofocus>
+        <button type="submit">Ask</button>
+      </form>
+      <p id="output"></p>
     </div>
-    <div id="resume" style="display: none;">
-      <h1>HEGE JACOBSEN</h1>
-      <h2>SOFTWARE ENGINEER</h2>
-      <p>Email: alias@domain.com</p>
-      <p>Phone: number</p>
-      <h1>PROFESSIONAL SUMMARY</h1>
-      <p>Innovative IT professional with over a decade of experience in network management, automation, system development, and user access management. Specializes in project management with a strong foundation in scripting languages such as Python, C++, C#, and PowerShell. Proficient in a range of technologies including Microsoft Azure, Active Directory, Exchange Server, and VMware.</p>
-      <h1>WORK EXPERIENCE</h1>
-      <ul>
-        <li>Cegal AS</li>
-        <li>Automation Engineer and IT Architect, 2019 - Present</li>
-        <li>Evry</li>
-        <li>IT Technician, 2018 - 2019</li>
-        <li>Altibox (Previously Lyse Tele)</li>
-        <li>Network Operation Center, 2017 - 2018</li>
-        <li>Adecco IT</li>
-        <li>Network Administrator and IT Technician, 2016 - 2017</li>
-      </ul>
-      <h1>PROJECTS</h1>
-      <ul>
-        <li>Automation of Remote-Mailbox creation for Kverneland Bil AS</li>
-        <li>Automation of Onboarding Azure for Global</li>
-        <li>Security hardening and automation for Inactive Accounts at Cegal AS</li>
-        <li>User Access Automation project for Cegal AS</li>
-        <li>Automation of Offboarding process for Global and Borr Drilling</li>
-        <li>Security hardening for Cegal AS</li>
-        <li>Onboarding of Sysco Norway, Sysco SV and DK employees at Cegal AS</li>
-        <li>Automation management of User Reactivation for Borr Drilling</li>
-        <li>Development of UA Tool application for Cegal AS</li>
-      </ul>
-      <h1>EDUCATION</h1>
-      <ul>
-        <li>Bachelor's in Information Technology, Western Norway University of Applied Sciences</li>
-        <li>Ajer Senior High school</li>
-        <li>General and Business Studies, 2002 - 2005</li>
-        <li>Monroe Senior High school</li>
-        <li>General and Business Studies, 2003 - 2004 (Exchange Student)</li>
-      </ul>
-      <h1>CERTIFICATIONS</h1>
-      <ul>
-        <li>CCNA Routing and Switching, 2013</li>
-        <li>Cisco Certified Entry Networking Technician (CCENT), 2013</li>
-      </ul>
-      <h1>SKILLS</h1>
-      <ul id="skills">
-        <li>Cloud: Microsoft Azure, Privileged Identity Management (PIM), Azure Active Directory</li>
-        <li>Network: WiFi, Routing, Cisco, Check Point, Switches</li>
-        <li>Operating Systems: Linux, Windows 10/8/7, Windows Server</li>
-        <li>Software: MySQL, Microsoft Exchange, Microsoft Visual Studio, Office 365, Microsoft Office</li>
-        <li>Development & Scripting: C++, C#, CSS, Python, HTML, Winforms, PowerShell, Azure DevOps, .NET, GitHub</li>
-        <li>Domain Expertise: Configuration Management, Group Policies, User Administration</li>
-        <li>Management: GDPR, Onboarding & Offboarding, Project Lead, Project Management</li>
-      </ul>
-      <h1>COURSES</h1>
-      <ul>
-        <li>Managing Modern Desktops, Microsoft Learn, 2021</li>
-        <li>Security in Microsoft 365, Microsoft Learn, 2021</li>
-        <li>Identity and Access Administrator, Microsoft Learn, 2022</li>
-      </ul>
-    </div>
-    <script>
-      // JavaScript code
-      const chatbot = document.getElementById("chatbot");
-      const resume = document.getElementById("resume");
-      const input = document.createElement("form");
-      const questionInput = document.createElement("input");
-      const submitButton = document.createElement("button");
-      const output = document.createElement("p");
+  </div>
+  <script>
+    const chatbot = document.getElementById("chatbot");
+    const input = document.getElementById("input");
+    const questionInput = input.querySelector("input");
+    const output = input.querySelector("p");
 
-      chatbot.addEventListener("click", function() {
-        chatbot.style.display = "none";
-        input.style.display = "block";
-        questionInput.focus();
-      });
+    chatbot.addEventListener("click", function() {
+      chatbot.style.display = "none";
+      input.style.display = "block";
+      questionInput.focus();
+    });
 
-      input.addEventListener("submit", function(event) {
-        event.preventDefault();
-        const question = questionInput.value.toLowerCase();
-        let answer = "";
+    input.addEventListener("submit", function(event) {
+      event.preventDefault();
+      const question = questionInput.value.toLowerCase();
+      let answer = "";
 
-        switch (question) {
-          case "name":
-            answer = "My name is Hege Jacobsen.";
-            break;
-          case "job title":
-            answer = "I am a Software Engineer.";
-            break;
-          case "email address":
-            answer = "My email address is alias@domain.com.";
-            break;
-          case "phone number":
-            answer = "My phone number is number.";
-            break;
-          case "what is your professional summary?":
-            answer = "Innovative IT professional with over a decade of experience in network management, automation, system development, and user access management. Specializes in project management with a strong foundation in scripting languages such as Python, C++, C#, and PowerShell. Proficient in a range of technologies including Microsoft Azure, Active Directory, Exchange Server, and VMware.";
-            break;
-          case "what is your work experience?":
-            answer = "I have worked at Cegal AS as an Automation Engineer and IT Architect, at Evry as an IT Technician, at Altibox (Previously Lyse Tele) in the Network Operation Center, and at Adecco IT as a Network Administrator and IT Technician.";
-            break;
-          case "what are your projects?":
-            answer = "Some notable projects include Automation of Remote-Mailbox creation for Kverneland Bil AS, Automation of Onboarding Azure for Global, Security hardening and automation for Inactive Accounts at Cegal AS, User Access Automation project for Cegal AS, Automation of Offboarding process for Global and Borr Drilling, Security hardening for Cegal AS, Onboarding of Sysco Norway, Sysco SV and DK employees at Cegal AS, Automation management of User Reactivation for Borr Drilling, and Development of UA Tool application for Cegal AS.";
-            break;
-          case "what is your education?":
-            answer = "I have a Bachelor's in Information Technology from Western Norway University of Applied Sciences, and I attended Ajer Senior High school and Monroe Senior High school for General and Business Studies.";
-            break;
-          case "what are your certifications?":
-            answer = "I am CCNA Routing and Switching certified and Cisco Certified Entry Networking Technician (CCENT) certified.";
-            break;
-          case "what are your skills?":
-            answer = "My skills include Cloud: Microsoft Azure, Privileged Identity Management (PIM), Azure Active Directory, Network: WiFi, Routing, Cisco, Check Point, Switches, Operating Systems: Linux, Windows 10/8/7, Windows Server, Software: MySQL, Microsoft Exchange, Microsoft Visual Studio, Office 365, Microsoft Office, Development & Scripting: C++, C#, CSS, Python, HTML, Winforms, PowerShell, Azure DevOps, .NET, GitHub, Domain Expertise: Configuration Management, Group Policies, User Administration, and Management: GDPR, Onboarding & Offboarding, Project Lead, Project Management.";
-            break;
-          case "what courses have you taken?":
-            answer = "I have taken Managing Modern Desktops, Security in Microsoft 365, and Identity and Access Administrator courses on Microsoft Learn.";
-            break;
-          default:
-            answer = "I'm sorry, I don't understand your question. Please try again.";
-        }
+      switch (question) {
+        case "name":
+          answer = document.getElementById("name").innerHTML;
+          break;
+        case "job title":
+          answer = document.getElementById("job-title").innerHTML;
+          break;
+        case "email address":
+          answer = document.getElementById("email-address").innerHTML;
+          break;
+        case "phone number":
+          answer = document.getElementById("phone-number").innerHTML;
+          break;
+        case "what is your professional summary?":
+          answer = document.getElementById("professional-summary").innerHTML;
+          break;
+        case "what is your work experience?":
+          answer = document.getElementById("work-experience").innerHTML;
+          break;
+        case "what are your projects?":
+          answer = document.getElementById("projects").innerHTML;
+          break;
+        case "what is your education?":
+          answer = document.getElementById("education").innerHTML;
+          break;
+        case "what are your certifications?":
+          answer = document.getElementById("certifications").innerHTML;
+          break;
+        case "what are your skills?":
+          answer = document.getElementById("skills").innerHTML;
+          break;
+        case "what courses have you taken?":
+          answer = document.getElementById("courses").innerHTML;
+          break;
+        default:
+          answer = "I'm sorry, I don't understand your question. Please try again.";
+      }
 
-        output.innerHTML = answer;
-        questionInput.value = "";
-        questionInput.focus();
-      });
-
-      questionInput.setAttribute("type", "text");
-      questionInput.setAttribute("placeholder", "Ask me a question...");
-      submitButton.setAttribute("type", "submit");
-      submitButton.innerHTML = "Ask";
-      input.appendChild(questionInput);
-      input.appendChild(submitButton);
-      resume.appendChild(input);
-      resume.appendChild(output);
-    </script>
-  </body>
+      output.innerHTML = answer;
+      questionInput.value = "";
+      questionInput.focus();
+    });
+  </script>
+  <div id="data" style="display: none;">
+    <div id="name">My name is Hege Jacobsen.</div>
+    <div id="job-title">I am a Software Engineer.</div>
+    <div id="email-address">My email address is alias@domain.com.</div>
+    <div id="phone-number">My phone number is number.</div>
+    <div id="professional-summary">Innovative IT professional with over a decade of experience in network management, automation, system development, and user access management. Specializes in project management with a strong foundation in scripting languages such as Python, C++, C#, and PowerShell. Proficient in a range of technologies including Microsoft Azure, Active Directory, Exchange Server, and VMware.</div>
+    <div id="work-experience">I have worked at Cegal AS as an Automation Engineer and IT Architect, at Evry as an IT Technician, at Altibox (Previously Lyse Tele) in the Network Operation Center, and at Adecco IT as a Network Administrator and IT Technician.</div>
+    <div id="projects">Some notable projects include Automation of Remote-Mailbox creation for Kverneland Bil AS, Automation of Onboarding Azure for Global, Security hardening and automation for Inactive Accounts at Cegal AS, User Access Automation project for Cegal AS, Automation of Offboarding process for Global and Borr Drilling, Security hardening for Cegal AS, Onboarding of Sysco Norway, Sysco SV and DK employees at Cegal AS, Automation management of User Reactivation for Borr Drilling, and Development of UA Tool application for Cegal AS.</div>
+    <div id="education">I have a Bachelor's in Information Technology from Western Norway University of Applied Sciences, and I attended Ajer Senior High school and Monroe Senior High school for General and Business Studies.</div>
+    <div id="certifications">I am CCNA Routing and Switching certified and Cisco Certified Entry Networking Technician (CCENT) certified.</div>
+    <div id="skills">My skills include Cloud: Microsoft Azure, Privileged Identity Management (PIM), Azure Active Directory, Network: WiFi, Routing, Cisco, Check Point, Switches, Operating Systems: Linux, Windows 10/8/7, Windows Server, Software: MySQL, Microsoft Exchange, Microsoft Visual Studio, Office 365, Microsoft Office, Development & Scripting: C++, C#, CSS, Python, HTML, Winforms, PowerShell, Azure DevOps, .NET, GitHub, Domain Expertise: Configuration Management, Group Policies, User Administration, and Management: GDPR, Onboarding & Offboarding, Project Lead, Project Management.</div>
+    <div id="courses">I have taken Managing Modern Desktops, Security in Microsoft 365, and Identity and Access Administrator courses on Microsoft Learn.</div>
+  </div>
+</body>
 </html>
