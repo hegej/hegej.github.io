@@ -119,7 +119,6 @@
     var input = document.getElementById("input");
     var commands = {
       "get-resume": function () {
-        clearTerminal();
         fetch("MyResume.html")
           .then(response => response.text())
           .then(data => {
