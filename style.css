@@ -1,0 +1,122 @@
+/* index.html styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 10px;
+  }
+  
+  nav a:hover {
+    text-decoration: underline;
+  }
+  
+  main {
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 36px;
+    margin-top: 0;
+  }
+  
+  p {
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  
+  /* MyResume.html styles */
+  #resume {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+  }
+  
+  #resume img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+  
+  #chatbot {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  #chatbot img {
+    width: 50px;
+    height: 50px;
+  }
+  
+  #input {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  #input form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #input input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 2px solid #333;
+    margin-right: 10px;
+  }
+  
+  #input input[type="text"]:focus {
+    outline: none;
+    border-bottom: 2px solid #007acc;
+  }
+  
+  #input button[type="submit"] {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #007acc;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  #input button[type="submit"]:hover {
+    background-color: #005b8e;
+  }
+  
+  #output {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  
+  /* Common styles */
+  a {
+    color: #007acc;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
