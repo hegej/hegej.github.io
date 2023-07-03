@@ -116,7 +116,11 @@
             });
         },
         "clear": function() {
+          var asciiArt = terminal.querySelector("pre");
+          var helpMessage = terminal.querySelector("p");
           terminal.innerHTML = "";
+          terminal.appendChild(asciiArt);
+          terminal.appendChild(helpMessage);
         },
         "help": function() {
           terminal.innerHTML += "<p>Available commands:</p>";
