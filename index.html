@@ -169,6 +169,12 @@
         input.value = "";
       }
     });
+
+    window.addEventListener("load", function () {
+      if (terminal.offsetHeight > window.innerHeight) {
+        scroll();
+      }
+    });
   </script>
 </body>
 
