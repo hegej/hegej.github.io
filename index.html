@@ -17,7 +17,6 @@
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
-      display: flex;
       position: absolute;
       top: 0;
       left: 0;
@@ -36,8 +35,10 @@
       padding-left: 30px;
     }
     #passwordContainer {
+      position: absolute;
       text-align: center;
-      margin-top: 20%;
+      width: 100%;
+      top: 55%; /* Adjust according to your needs */
       z-index: 1;
     }
   </style>
@@ -62,7 +63,7 @@
       const chestImage = document.getElementById("chestImage");
       const unlockedChest = document.getElementById("unlockedChest");
 
-      if(password === "Atlantis") { // Replace 'Atlantis' with your real password
+      if (password === "Atlantis") { // Replace 'Atlantis' with your real password
         chestImage.style.display = "none";
         unlockedChest.style.display = "block";
       } else {
