@@ -35,6 +35,10 @@
       background-position: 5px center;
       padding-left: 30px;
     }
+    #passwordContainer {
+      text-align: center;
+      margin-top: 20%;
+    }
   </style>
 </head>
 
@@ -46,7 +50,7 @@
     <img src="yourQRcode.png" alt="QR Code">
   </div>
 
-  <div>
+  <div id="passwordContainer">
     <input type="password" id="password" placeholder="Enter the password">
     <button onclick="unlockChest()">Unlock</button>
   </div>
