@@ -2,145 +2,21 @@
 <html>
 
 <head>
-  <title>Terminal</title>
+  <title>Interactive Chest</title>
   <style>
-    body {
-      font-family: monospace;
-      margin: 0;
-      padding: 0;
+    #chestImage {
+      width: 300px;
+      height: 300px;
+      background-image: url('locked_chest.png');
     }
-
-    #terminal {
-      background-color: black;
-      color: white;
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 50px;
-      left: 0;
-      overflow-y: scroll;
-      padding: 10px;
-    }
-
-    #input-container {
-      background-color: black;
-      color: white;
-      border: none;
-      font-family: monospace;
-      font-size: 16px;
-      width: 100%;
-      padding: 10px;
-      box-sizing: border-box;
-      position: absolute;
-      bottom: 0;
-      display: flex;
-    }
-
-    #prompt {
-      color: green;
-      margin-right: 10px;
-    }
-
-    #input {
-      background-color: black;
-      color: white;
-      border: none;
-      font-family: monospace;
-      font-size: 16px;
-      width: 100%;
-      padding: 0;
-      box-sizing: border-box;
-      outline: none;
-    }
-
-    /* Set the height of the body to 100% */
-    html,
-    body {
-      height: 100%;
-    }
-
-    .command {
-      color: white;
-    }
-
-    .description {
-      color: grey;
-      font-style: italic;
+    #unlockedChest {
+      display: none;
+      background-image: url('unlocked_chest.png');
     }
   </style>
 </head>
 
 <body>
-  <div id="terminal">
-    <br>
-    <p>Type "help" to get a list of commands</p>
-  </div>
-  <div id="input-container">
-    <span id="prompt">Root\User></span>
-    <input id="input" type="text" autofocus>
-  </div>
-  <script>
-    var terminal = document.getElementById("terminal");
-    var input = document.getElementById("input");
-    var commands = {
-      "get-resume": function () {
-        terminal.innerHTML = ""; // clear the terminal window
-        fetch("MyResume.html")
-          .then(response => response.text())
-          .then(data => {
-            terminal.innerHTML += "<pre>" + data + "</pre>";
-            scroll();
-          });
-      },
-      "clear": function () {
-        var asciiArt = terminal.querySelector("pre");
-        var helpMessage = terminal.querySelector("p");
-        terminal.innerHTML = "";
-        terminal.appendChild(asciiArt);
-        terminal.appendChild(helpMessage);
-        scroll();
-      },
-      "help": function () {
-        terminal.innerHTML += "<p>Available commands:</p>";
-        terminal.innerHTML += "<ul>";
-        terminal.innerHTML += "<li><span class='command'>get-resume :</span> <span class='description'> Fetches the 'MyResume.html' file and displays it in the terminal.</span></li>";
-        terminal.innerHTML += "<li><span class='command'>clear :</span> <span class='description'> Clears the terminal.</span></li>";
-        terminal.innerHTML += "<li><span class='command'>help :</span> <span class='description'> Displays a list of available commands.</span></li>";
-        terminal.innerHTML += "</ul>";
-        scroll();
-      },
-      "scroll": function () {
-        scroll();
-      }
-    };
-
-    function scroll() {
-      terminal.scrollTop = terminal.scrollHeight;
-    }
-
-    function scrollDown() {
-      document.body.scrollTop = document.body.scrollHeight;
-    }
-
-    input.addEventListener("keydown", function (event) {
-      if (event.key === "Enter") {
-        var command = input.value;
-        terminal.innerHTML += "<p><span class='command'>Root/User> " + command + "</span></p>";
-        if (commands[command]) {
-          commands[command]();
-        } else {
-          terminal.innerHTML += "<p>" + command + ": command not found</p>";
-        }
-        input.value = "";
-      }
-    });
-
-    window.addEventListener("load", function () {
-      //if (terminal.offsetHeight > window.innerHeight) {
-        scroll();
-      //}
-    });
-  </script>
 
   <h1>Unlock the Chest</h1>
   <div id="chestImage"></div>
@@ -157,7 +33,7 @@
       const chestImage = document.getElementById("chestImage");
       const unlockedChest = document.getElementById("unlockedChest");
 
-      if(password === "Atlantis") {
+      if(password === "Atlantis") { // Replace 'Atlantis' with your real password
         chestImage.style.display = "none";
         unlockedChest.style.display = "block";
       } else {
