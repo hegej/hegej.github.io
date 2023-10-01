@@ -7,8 +7,14 @@
     body, html {
       margin: 0;
       padding: 0;
-      height: 100%;
       background-color: #000000;
+    }
+    #container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
     }
     #chestImage {
       width: 50%;
@@ -17,12 +23,6 @@
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      margin: auto;
     }
     #unlockedChest {
       display: none;
@@ -35,26 +35,24 @@
       padding-left: 30px;
     }
     #passwordContainer {
-      position: absolute;
       text-align: center;
-      width: 100%;
-      top: 55%; /* Adjust according to your needs */
-      z-index: 1;
+      margin-top: 2%; /* You can adjust this */
     }
   </style>
 </head>
 
 <body>
 
-  <div id="chestImage"></div>
+  <div id="container">
+    <div id="chestImage"></div>
+    <div id="passwordContainer">
+      <input type="password" id="password" placeholder="Enter the password">
+      <button onclick="unlockChest()">Unlock</button>
+    </div>
+  </div>
 
   <div id="unlockedChest">
     <img src="yourQRcode.png" alt="QR Code">
-  </div>
-
-  <div id="passwordContainer">
-    <input type="password" id="password" placeholder="Enter the password">
-    <button onclick="unlockChest()">Unlock</button>
   </div>
 
   <script>
@@ -63,7 +61,7 @@
       const chestImage = document.getElementById("chestImage");
       const unlockedChest = document.getElementById("unlockedChest");
 
-      if (password === "Atlantis") { // Replace 'Atlantis' with your real password
+      if (password === "Atlantis") {
         chestImage.style.display = "none";
         unlockedChest.style.display = "block";
       } else {
