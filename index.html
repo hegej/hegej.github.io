@@ -10,54 +10,36 @@
       height: 100%;
       background-color: #000000;
     }
-    #container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      margin: auto;
-      text-align: center;
-    }
     #chestImage {
-      width: 25%;  /* Reduced to 50% of original 50% */
-      height: auto;
+      width: 25%;  /* Reduced from 50% */
+      height: 25%;  /* Reduced from 50% */
+      background-image: url('Atlantis_golden_mysterious_chest.png');
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
+      position: relative;
+      margin: auto;
     }
     #unlockedChest {
       display: none;
     }
-    #passwordWrapper {
-      background-image: url('A_golden_Atlantis_Treasure_chest_key.png');
-      background-repeat: no-repeat;
-      background-position: 5px center;
-      width: 200px;
-      height: 30px;
-      margin: 20px auto 0 auto;
-    }
-    #password {
-      background: transparent;
-      width: 100%;
-      height: 100%;
-      border: none;
+    #passwordContainer {
+      text-align: center;
+      margin-top: 2%; /* Adjust as needed */
     }
   </style>
 </head>
 
 <body>
 
-  <div id="container">
-    <img id="chestImage" src='Atlantis_golden_mysterious_chest.png' alt='Chest'>
-  
-    <div id="unlockedChest">
-      <img src="yourQRcode.png" alt="QR Code">
-    </div>
-  
-    <div id="passwordWrapper">
-      <input type="password" id="password" placeholder="Enter the password">
-    </div>
+  <div id="chestImage"></div>
+
+  <div id="unlockedChest">
+    <img src="yourQRcode.png" alt="QR Code">
+  </div>
+
+  <div id="passwordContainer">
+    <input type="password" id="password" placeholder="Enter the password">
     <button onclick="unlockChest()">Unlock</button>
   </div>
 
@@ -70,6 +52,7 @@
       if(password === "Atlantis") {
         chestImage.style.display = "none";
         unlockedChest.style.display = "block";
+        document.body.style.cursor = "url('Keycursor.cur'), auto";  // Change cursor
       } else {
         alert('Wrong password. Try again.');
       }
