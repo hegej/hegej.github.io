@@ -123,6 +123,20 @@ document.addEventListener('mouseup', function() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
 });
+
+const chestImageElement = document.getElementById("chestImage");
+
+canvas.addEventListener('click', function(e) {
+  if (passwordCorrect) {
+    const x = e.clientX;
+    const y = e.clientY;
+    const specialX1 = 100, specialY1 = 100, specialX2 = 200, specialY2 = 200;
+
+    if (x >= specialX1 && x <= specialX2 && y >= specialY1 && y <= specialY2) {
+      chestImageElement.src = "Atlantis_golden_mysterious_chest_Open.png";
+    }
+  }
+});
     
   </script>
 </body>
