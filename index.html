@@ -22,7 +22,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 30px;
+            margin-top: -150px;
         }
 
         @media only screen and (max-width: 600px) {
@@ -31,9 +31,14 @@
             }
         }
 
+        #chestImage {
+            width: 600px;
+            height: 600px;
+        }
+
         #passwordContainer {
             text-align: center;
-            margin-top: 10px;
+            margin-top: -40px;
             width: 100%;
         }
 
@@ -64,7 +69,7 @@
     </div>
 
     <script>
-         const canvas = document.getElementById('myCanvas');
+        const canvas = document.getElementById('myCanvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
@@ -82,63 +87,70 @@
                 passwordCorrect = true;
                 if (isMobile) {
                     drawKey(100, 100); // Draw initial mobile key
-                    canvas.addEventListener('touchstart', function(e) {
-                    const touch = e.changedTouches[0];
-                    const x = touch.pageX;
-                    const y = touch.pageY;
-                    drawKey(x, y);
-                });
+                    canvas.addEventListener('touchstart', function (e) {
+                        const touch = e.changedTouches[0];
+                        const x = touch.pageX;
+                        const y = touch.pageY;
+                        drawKey(x, y);
+                    });
                 }
-            } 
+            }
             else if (password !== "") {
                 alert('Wrong password. Try again.');
             }
         }
 
-    function drawKey(x, y) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(keyImage, x, y, keyImage.width * 0.1, keyImage.height * 0.1);
-    }
+        function drawKey(x, y) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(keyImage, x, y, keyImage.width * 0.1, keyImage.height * 0.1);
+        }
 
-    function handleMouseMoveOrTouchMove(e) {
-  if (passwordCorrect) {
-    let x, y;
-    if (e.type === 'mousemove') {
-      x = e.clientX;
-      y = e.clientY;
-    } else if (e.type === 'touchmove') {
-      const touch = e.changedTouches[0];
-      x = touch.pageX;
-      y = touch.pageY;
-    }
-    drawKey(x, y);
-  }
-}
+        function handleMouseMoveOrTouchMove(e) {
+            if (passwordCorrect) {
+                let x, y;
+                if (e.type === 'mousemove') {
+                    x = e.clientX;
+                    y = e.clientY;
+                } else if (e.type === 'touchmove') {
+                    const touch = e.changedTouches[0];
+                    x = touch.pageX;
+                    y = touch.pageY;
+                }
+                drawKey(x, y);
+            }
+        }
 
-document.addEventListener('mousemove', handleMouseMoveOrTouchMove);
-document.addEventListener('touchmove', handleMouseMoveOrTouchMove);
+        document.addEventListener('mousemove', handleMouseMoveOrTouchMove);
+        document.addEventListener('touchmove', handleMouseMoveOrTouchMove);
 
-document.addEventListener('mouseup', function() {
-  if (passwordCorrect) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-  }
-});
+        document.addEventListener('mouseup', function () {
+            if (passwordCorrect) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        });
 
-const chestImageElement = document.getElementById("chestImage");
+        const chestImageElement = document.getElementById("chestImage");
 
-chestImageElement.addEventListener('click', function(e) {
-  if (passwordCorrect) {
-    const x = e.clientX - chestImageElement.offsetLeft;
-    const y = e.clientY - chestImageElement.offsetTop;
-    const specialX1 = 100, specialY1 = 100, specialX2 = 200, specialY2 = 200;
+        chestImageElement.addEventListener('click', function (e) {
+            if (passwordCorrect) {
+                const x = e.clientX - chestImageElement.offsetLeft;
+                const y = e.clientY - chestImageElement.offsetTop;
+                const centerX = chestImageElement.offsetWidth / 2;
+                const centerY = chestImageElement.offsetHeight / 2;
+                const width = 100;
+                const height = 100;
+                const specialX1 = centerX - width / 2;
+                const specialY1 = centerY - height / 2;
+                const specialX2 = centerX + width / 2;
+                const specialY2 = centerY + height / 2;
 
-    if (x >= specialX1 && x <= specialX2 && y >= specialY1 && y <= specialY2) {
-      chestImageElement.src = "Atlantis_golden_mysterious_chest_Open.png";
-    }
-  }
-});
-    
-  </script>
+                if (x >= specialX1 && x <= specialX2 && y >= specialY1 && y <= specialY2) {
+                    chestImageElement.src = "Atlantis_golden_mysterious_chest_Open.png";
+                }
+            }
+        });
+
+    </script>
 </body>
 
 </html>
