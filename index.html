@@ -19,22 +19,20 @@
       display: flex;
       justify-content: center;
       align-items: center;
-    }
-    #chestImage {
-      width: 80%;
-      height: auto;
-      margin-top: 20px;
+      margin-top: 30px;
     }
     #passwordContainer {
       text-align: center;
       margin-top: 20px;
       width: 100%;
     }
-    #mobileKey {
-      width: 10%;
-      height: auto;
+    canvas {
       position: absolute;
-      display: none;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
     }
   </style>
 </head>
@@ -50,46 +48,46 @@
       <input type="password" id="password" placeholder="Enter the password">
       <button onclick="unlockChest()">Unlock</button>
     </div>
+
+    <canvas id="myCanvas"></canvas>
   
     <script>
       let passwordCorrect = false; // new variable
-      const keyImage = new Image(); // mobile key image
-      keyImage.src = 'A_golden_Atlantis_Treasure_chest_key.png';
-      keyImage.width = 10; // 90% smaller
-      keyImage.height = 10;
-  
-      function unlockChest() {
-        const password = document.getElementById("password").value;
-        document.getElementById("mobileKey").style.display = 'block';
-  
-        if(password === "Atlantis") { // Replace 'Atlantis' with your real password
-          passwordCorrect = true;
-          document.body.style.cursor = 'url("Keycursor.cur"), auto';
-          document.addEventListener('touchmove', moveKey);
-        } else {
-          alert('Wrong password. Try again.');
-        }
-      }
-  
-      function moveKey(e) {
-        if (passwordCorrect) {
-            document.addEventListener('mousemove', function(e) {
-                const keyImg = document.getElementById("mobileKey");
-                keyImg.style.left = e.pageX + 'px';
-                keyImg.style.top = e.pageY + 'px';
-             });
+      const password = document.getElementById("password").value;
 
-            document.addEventListener('touchmove', function(e) {
-                e.preventDefault();
-                const touch = e.touches[0];
-                const keyImg = document.getElementById("mobileKey");
-                keyImg.style.left = touch.pageX + 'px';
-                keyImg.style.top = touch.pageY + 'px';
-                keyImg.style.display = 'block';
-            });
+      if (password === "Atlantis") {
+        passwordCorrect = true;
+        document.body.style.cursor = 'url("Keycursor.cur"), auto';
+      } else {
+            alert('Wrong password. Try again.');
         }
+
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+    const keyImage = new Image();
+    keyImage.src = "A_golden_Atlantis_Treasure_chest_key.png";
+
+    canvas.addEventListener('touchstart', function(e) {
+      if (passwordCorrect) {
+        const touch = e.touches[0];
+        const x = touch.clientX;
+        const y = touch.clientY;
+        drawKey(x, y);
       }
-    </script>
-  </body>
-  
-  </html>
+    });
+
+    canvas.addEventListener('touchend', function() {
+      if (passwordCorrect) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    });
+
+    function drawKey(x, y) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(keyImage, x, y, keyImage.width * 0.1, keyImage.height * 0.1);  // scale down image size by 90%
+    }
+  </script>
+
+</body>
+
+</html>
