@@ -80,17 +80,16 @@
             if (password === "Atlantis") {
                 passwordCorrect = true;
                 if (isMobile) {
+                    drawKey(100, 100); // Draw initial mobile key
                     canvas.addEventListener('touchstart', function(e) {
                     const touch = e.changedTouches[0];
                     const x = touch.pageX;
                     const y = touch.pageY;
                     drawKey(x, y);
                 });
-                    drawKey(100, 100); // Draw initial mobile key
-                } else {
-                    document.body.style.cursor = 'url("Keycursor.cur"), auto';
                 }
-            } else if (password !== "") {
+            } 
+            else if (password !== "") {
                 alert('Wrong password. Try again.');
             }
         }
