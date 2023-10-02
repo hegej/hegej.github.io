@@ -11,8 +11,8 @@
       background-color: #000000;
     }
     #chestImage {
-      width: 25%;  /* Reduced from 50% */
-      height: 25%;  /* Reduced from 50% */
+      width: 25%;  /* 50% smaller */
+      height: auto;
       background-image: url('Atlantis_golden_mysterious_chest.png');
       background-size: contain;
       background-repeat: no-repeat;
@@ -20,45 +20,55 @@
       position: relative;
       margin: auto;
     }
-    #unlockedChest {
-      display: none;
-    }
     #passwordContainer {
       text-align: center;
-      margin-top: 2%; /* Adjust as needed */
+      margin-top: 2%;
+    }
+    #mobileKey {
+      width: 10%; /* 90% smaller */
+      height: auto;
+      position: absolute;
+      display: none; /* Initially hidden */
     }
   </style>
 </head>
 
 <body>
-
   <div id="chestImage"></div>
-
-  <div id="unlockedChest">
-    <img src="yourQRcode.png" alt="QR Code">
-  </div>
 
   <div id="passwordContainer">
     <input type="password" id="password" placeholder="Enter the password">
     <button onclick="unlockChest()">Unlock</button>
   </div>
+  <img id="mobileKey" src="A_golden_Atlantis_Treasure_chest_key.png" />
 
   <script>
     function unlockChest() {
       const password = document.getElementById("password").value;
-      const chestImage = document.getElementById("chestImage");
-      const unlockedChest = document.getElementById("unlockedChest");
-
-      if(password === "Atlantis") {
-        chestImage.style.display = "none";
-        unlockedChest.style.display = "block";
-        document.body.style.cursor = "url('Keycursor.cur'), auto";  // Change cursor
+      if (password === "Atlantis") {
+        document.body.style.cursor = 'url("Keycursor.cur"), auto';
+        document.getElementById("mobileKey").style.display = 'none'; // Hide on mobile
       } else {
         alert('Wrong password. Try again.');
       }
     }
+
+    // For Desktop
+    document.addEventListener('mousemove', function(e) {
+      const keyImg = document.getElementById("mobileKey");
+      keyImg.style.left = e.pageX + 'px';
+      keyImg.style.top = e.pageY + 'px';
+    });
+
+    // For Mobile
+    document.addEventListener('touchmove', function(e) {
+      e.preventDefault();
+      const touch = e.touches[0];
+      const keyImg = document.getElementById("mobileKey");
+      keyImg.style.left = touch.pageX + 'px';
+      keyImg.style.top = touch.pageY + 'px';
+      keyImg.style.display = 'block';
+    });
   </script>
-
 </body>
-
 </html>
