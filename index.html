@@ -44,50 +44,53 @@
       </div>
     
   
-    <div id="passwordContainer">
-      <input type="password" id="password" placeholder="Enter the password">
-      <button onclick="unlockChest()">Unlock</button>
-    </div>
-
-    <canvas id="myCanvas"></canvas>
-  
-    <script>
-      let passwordCorrect = false; // new variable
-      const password = document.getElementById("password").value;
-
-      if (password === "Atlantis") {
-        passwordCorrect = true;
-        document.body.style.cursor = 'url("Keycursor.cur"), auto';
-      } else {
+      <div id="passwordContainer">
+        <input type="password" id="password" placeholder="Enter the password">
+        <button onclick="unlockChest()">Unlock</button>
+      </div>
+    
+      <script>
+        let passwordCorrect = false;
+        
+        function unlockChest() {
+          const password = document.getElementById("password").value;
+    
+          if (password === "Atlantis") {
+            passwordCorrect = true;
+            document.body.style.cursor = 'url("Keycursor.cur"), auto';
+          } else if(password !== "") {
             alert('Wrong password. Try again.');
+          }
         }
-
-    const canvas = document.getElementById('myCanvas');
-    const ctx = canvas.getContext('2d');
-    const keyImage = new Image();
-    keyImage.src = "A_golden_Atlantis_Treasure_chest_key.png";
-
-    canvas.addEventListener('touchstart', function(e) {
-      if (passwordCorrect) {
-        const touch = e.touches[0];
-        const x = touch.clientX;
-        const y = touch.clientY;
-        drawKey(x, y);
-      }
-    });
-
-    canvas.addEventListener('touchend', function() {
-      if (passwordCorrect) {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-      }
-    });
-
-    function drawKey(x, y) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(keyImage, x, y, keyImage.width * 0.1, keyImage.height * 0.1);  // scale down image size by 90%
-    }
-  </script>
-
-</body>
-
-</html>
+    
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+        const keyImage = new Image();
+        keyImage.src = "A_golden_Atlantis_Treasure_chest_key.png";
+        keyImage.onload = function() {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        }
+    
+        document.addEventListener('touchstart', function(e) {
+          if (passwordCorrect) {
+            const touch = e.touches[0];
+            const x = touch.clientX;
+            const y = touch.clientY;
+            drawKey(x, y);
+          }
+        });
+    
+        document.addEventListener('touchend', function() {
+          if (passwordCorrect) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+          }
+        });
+    
+        function drawKey(x, y) {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(keyImage, x, y, keyImage.width * 0.1, keyImage.height * 0.1);
+        }
+      </script>
+    </body>
+    </html>
