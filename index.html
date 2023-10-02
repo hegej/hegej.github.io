@@ -23,6 +23,7 @@
     #chestImage {
       width: 80%;
       height: auto;
+      margin-top: 40px;
     }
     #passwordContainer {
       text-align: center;
@@ -59,6 +60,7 @@
   
       function unlockChest() {
         const password = document.getElementById("password").value;
+        document.getElementById("mobileKey").style.display = 'block';
   
         if(password === "Atlantis") { // Replace 'Atlantis' with your real password
           passwordCorrect = true;
