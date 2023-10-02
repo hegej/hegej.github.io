@@ -21,6 +21,11 @@
       align-items: center;
       margin-top: 30px;
     }
+    @media only screen and (max-width: 600px) {
+        #chestImage {
+        width: 80%;
+        }
+    }
     #passwordContainer {
       text-align: center;
       margin-top: 20px;
@@ -49,7 +54,7 @@
         <button onclick="unlockChest()">Unlock</button>
       </div>
     
-      <script>
+        <script>
         let passwordCorrect = false;
         
         function unlockChest() {
@@ -88,9 +93,18 @@
         });
     
         function drawKey(x, y) {
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-          ctx.drawImage(keyImage, x, y, keyImage.width * 0.1, keyImage.height * 0.1);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(keyImage, x, y, keyImage.width * 0.1, keyImage.height * 0.1);
         }
-      </script>
+
+        document.addEventListener('touchmove', function(e) {
+            if (passwordCorrect) {
+                const touch = e.changedTouches[0];
+                const x = touch.clientX;
+                const y = touch.clientY;
+                drawKey(x, y);
+            }
+        });
+        </script>
     </body>
-    </html>
+</html>
