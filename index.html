@@ -49,6 +49,8 @@
 
 <body>
 
+    <canvas id="myCanvas"></canvas>
+
     <div id="chestImageContainer">
         <img id="chestImage" src="Atlantis_golden_mysterious_chest.png" alt="Chest Image">
     </div>
@@ -60,14 +62,27 @@
     </div>
 
     <script>
+         const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const keyImage = new Image();
+        keyImage.src = "A_golden_Atlantis_Treasure_chest_key.png";
+
         let passwordCorrect = false;
+        let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
         function unlockChest() {
             const password = document.getElementById("password").value;
 
             if (password === "Atlantis") {
                 passwordCorrect = true;
-                document.body.style.cursor = 'url("Keycursor.cur"), auto';
+                if (isMobile) {
+                    drawKey(100, 100); // Draw initial mobile key
+                } else {
+                    document.body.style.cursor = 'url("Keycursor.cur"), auto';
+                }
             } else if (password !== "") {
                 alert('Wrong password. Try again.');
             }
