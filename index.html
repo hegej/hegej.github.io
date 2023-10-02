@@ -40,44 +40,43 @@
 
 <body>
 
-  <div id="chestImageContainer">
-    <img id="chestImage" src="Atlantis_golden_mysterious_chest.png" alt="Chest Image">
-  </div>
-
-  <div id="passwordContainer">
-    <input type="password" id="password" placeholder="Enter the password">
-    <button onclick="unlockChest()">Unlock</button>
-  </div>
-
-  <img id="mobileKey" src="A_golden_Atlantis_Treasure_chest_key.png" />
-
-  <script>
-    function unlockChest() {
-      const password = document.getElementById("password").value;
-      if(password === "Atlantis") {
-        document.body.style.cursor = 'url("GoldenKeycursor.cur"), auto';
-        document.getElementById("mobileKey").style.display = 'none';
-      } else {
-        alert('Wrong password. Try again.');
+    <div id="chestImage"></div>
+    <div id="unlockedChest">
+      <img src="yourQRcode.png" alt="QR Code">
+    </div>
+  
+    <div id="passwordContainer">
+      <input type="password" id="password" placeholder="Enter the password">
+      <button onclick="unlockChest()">Unlock</button>
+    </div>
+  
+    <script>
+      let passwordCorrect = false; // new variable
+      const keyImage = new Image(); // mobile key image
+      keyImage.src = 'A_golden_Atlantis_Treasure_chest_key.png';
+      keyImage.width = 10; // 90% smaller
+      keyImage.height = 10;
+  
+      function unlockChest() {
+        const password = document.getElementById("password").value;
+  
+        if(password === "Atlantis") { // Replace 'Atlantis' with your real password
+          passwordCorrect = true;
+          document.body.style.cursor = 'url("Keycursor.cur"), auto';
+          document.addEventListener('touchmove', moveKey);
+        } else {
+          alert('Wrong password. Try again.');
+        }
       }
-    }
-
-    document.addEventListener('mousemove', function(e) {
-      const keyImg = document.getElementById("mobileKey");
-      keyImg.style.left = e.pageX + 'px';
-      keyImg.style.top = e.pageY + 'px';
-    });
-
-    document.addEventListener('touchmove', function(e) {
-      e.preventDefault();
-      const touch = e.touches[0];
-      const keyImg = document.getElementById("mobileKey");
-      keyImg.style.left = touch.pageX + 'px';
-      keyImg.style.top = touch.pageY + 'px';
-      keyImg.style.display = 'block';
-    });
-  </script>
-
-</body>
-
-</html>
+  
+      function moveKey(e) {
+        if (passwordCorrect) {
+          // Move key image with touch coordinates here
+          keyImage.style.left = e.touches[0].clientX + 'px';
+          keyImage.style.top = e.touches[0].clientY + 'px';
+        }
+      }
+    </script>
+  </body>
+  
+  </html>
