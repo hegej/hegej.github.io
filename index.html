@@ -10,32 +10,32 @@
       height: 100%;
       background-color: #000000;
     }
-    #chestImage {
-      width: 50%;
-      height: 50%;
-      background-image: url('Atlantis_golden_mysterious_chest.png');
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-      display: flex;
+    #container {
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
       margin: auto;
+      text-align: center;
+    }
+    #chestImage {
+      width: 50%;
+      height: auto;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
     }
     #unlockedChest {
       display: none;
-      background-image: url('unlocked_chest.png');
     }
     #passwordWrapper {
       background-image: url('A_golden_Atlantis_Treasure_chest_key.png');
       background-repeat: no-repeat;
       background-position: 5px center;
-      padding-left: 30px;
       width: 200px;
       height: 30px;
+      margin: 20px auto 0 auto;
     }
     #password {
       background: transparent;
@@ -43,23 +43,18 @@
       height: 100%;
       border: none;
     }
-    #passwordContainer {
-      text-align: center;
-      margin-top: 60%;
-      z-index: 1;
-    }
   </style>
 </head>
 
 <body>
 
-  <div id="chestImage"></div>
-
-  <div id="unlockedChest">
-    <img src="yourQRcode.png" alt="QR Code">
-  </div>
-
-  <div id="passwordContainer">
+  <div id="container">
+    <img id="chestImage" src='Atlantis_golden_mysterious_chest.png' alt='Chest'>
+  
+    <div id="unlockedChest">
+      <img src="yourQRcode.png" alt="QR Code">
+    </div>
+  
     <div id="passwordWrapper">
       <input type="password" id="password" placeholder="Enter the password">
     </div>
@@ -72,7 +67,7 @@
       const chestImage = document.getElementById("chestImage");
       const unlockedChest = document.getElementById("unlockedChest");
 
-      if(password === "Atlantis") { // Replace 'Atlantis' with your real password
+      if(password === "Atlantis") {
         chestImage.style.display = "none";
         unlockedChest.style.display = "block";
       } else {
