@@ -101,28 +101,29 @@
       ctx.drawImage(keyImage, x, y, keyImage.width * 0.1, keyImage.height * 0.1);
     }
 
-    document.addEventListener('mousemove', function(e) {
-      if (passwordCorrect) {
-        const x = e.clientX;
-        const y = e.clientY;
-        drawKey(x, y);
-      }
-    });
+    function handleMouseMoveOrTouchMove(e) {
+  if (passwordCorrect) {
+    let x, y;
+    if (e.type === 'mousemove') {
+      x = e.clientX;
+      y = e.clientY;
+    } else if (e.type === 'touchmove') {
+      const touch = e.changedTouches[0];
+      x = touch.pageX;
+      y = touch.pageY;
+    }
+    drawKey(x, y);
+  }
+}
 
-    document.addEventListener('touchmove', function(e) {
-      if (passwordCorrect) {
-        const touch = e.changedTouches[0];
-        const x = touch.pageX;
-        const y = touch.pageY;
-        drawKey(x, y);
-      }
-    });
+document.addEventListener('mousemove', handleMouseMoveOrTouchMove);
+document.addEventListener('touchmove', handleMouseMoveOrTouchMove);
 
-    document.addEventListener('mouseup', function() {
-      if (passwordCorrect) {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-      }
-    });
+document.addEventListener('mouseup', function() {
+  if (passwordCorrect) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+});
     
   </script>
 </body>
