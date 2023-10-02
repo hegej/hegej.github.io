@@ -126,10 +126,10 @@ document.addEventListener('mouseup', function() {
 
 const chestImageElement = document.getElementById("chestImage");
 
-canvas.addEventListener('click', function(e) {
+chestImageElement.addEventListener('click', function(e) {
   if (passwordCorrect) {
-    const x = e.clientX;
-    const y = e.clientY;
+    const x = e.clientX - chestImageElement.offsetLeft;
+    const y = e.clientY - chestImageElement.offsetTop;
     const specialX1 = 100, specialY1 = 100, specialX2 = 200, specialY2 = 200;
 
     if (x >= specialX1 && x <= specialX2 && y >= specialY1 && y <= specialY2) {
