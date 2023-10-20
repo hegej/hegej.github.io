@@ -48,12 +48,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 9999;
+            z-index: 1;
             pointer-events: none;
-        }
-
-        .glow-effect {
-            box-shadow: 0 0 30px #ffcc00, 0 0 40px #ffcc00, 0 0 50px #ffcc00, 0 0 60px #ffcc00;
         }
     </style>
 </head>
@@ -83,12 +79,15 @@
 
         let passwordCorrect = false;
         let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        let glowInterval;
+        let animationFrameId;
+        let speedFactor = 5;
+        let glowSize = 15;
+        const maxSize = 300;
 
         function unlockChest() {
             const password = document.getElementById("password").value;
 
-            if (password === "Atlantis") {
+            if (password === "pioneer") {
                 passwordCorrect = true;
                 if (isMobile) {
                     drawKey(100, 100); // Draw initial mobile key
@@ -103,12 +102,13 @@
             else if (password !== "") {
                 alert('Wrong password. Try again.');
             }
-        }
+        };
 
         function drawKey(x, y) {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.drawImage(keyImage, x, y, keyImage.width * 0.1, keyImage.height * 0.1);
-        }
+        };
+
 
         function handleMouseMoveOrTouchMove(e) {
             if (passwordCorrect) {
@@ -123,7 +123,7 @@
                 }
                 drawKey(x, y);
             }
-        }
+        };
 
         document.addEventListener('mousemove', handleMouseMoveOrTouchMove);
         document.addEventListener('touchmove', handleMouseMoveOrTouchMove);
@@ -133,15 +133,6 @@
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
             }
         });
-
-        function drawGlow(x, y, alpha) {
-            const gradient = ctx.createRadialGradient(x, y, 30, x, y, 300);
-            gradient.addColorStop(0, `rgba(255, 204, 0, ${alpha * 0.2})`);
-            gradient.addColorStop(1, `rgba(255, 204, 0, 0)`);
-            ctx.fillStyle = gradient;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-        }
-
 
         const chestImageElement = document.getElementById("chestImage");
 
@@ -164,31 +155,56 @@
                 if (x >= specialX1 && x <= specialX2 && y >= specialY1 && y <= specialY2) {
                     chestImageElement.src = "Atlantis_golden_mysterious_chest_Open.png";
 
-                    const glowX = chestImageElement.offsetLeft + centerX;
-                    const glowY = chestImageElement.offsetTop + centerY - 10;
+                    document.removeEventListener('mousemove', handleMouseMoveOrTouchMove);
+                    document.removeEventListener('touchmove', handleMouseMoveOrTouchMove);
 
-                    drawGlow(glowX, glowY, 1);
+                    const centerX = e.clientX;
+                    const centerY = e.clientY;
 
+                    const glowX = centerX;
+                    const glowY = centerY;
 
-                    let alpha = 1;
-                    const fadeOut = setInterval(() => {
-                        alpha -= 0.1;
-                        if (alpha < 0) {
-                            clearInterval(fadeOut);
-                            ctx.clearRect(0, 0, canvas.width, canvas.height);
-                            return;
-                        }
-                        drawGlow(glowX, glowY, alpha);
-                    }, 300);
+                    let glowGrowingDuration = 6000;
+                    let disappearanceTime = 5000;
 
-                    setTimeout(() => {
-                        clearInterval(fadeOut);
-                        ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    }, 10000);
+                    requestAnimationFrame((timestamp) => growGlow(timestamp, timestamp, glowGrowingDuration, glowX, glowY));
                 }
-            }
-        });
 
+                setTimeout(() => {
+                    document.getElementById("chestImageContainer").style.display = "none";
+                    document.getElementById("passwordContainer").style.display = "none";
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                }, disappearanceTime);
+            }
+        }
+        );
+
+        function drawGlow(x, y) {
+            ctx.clearRect(0.5, 0.5, canvas.width, canvas.height);
+            const gradient = ctx.createRadialGradient(x, y, 0, x, y, glowSize);
+            gradient.addColorStop(0, 'rgba(255, 204, 0, 1)');
+            gradient.addColorStop(1, 'rgba(255, 204, 0, 0)');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        };
+
+
+        function growGlow(timestamp, startTimestamp, duration, x, y) {
+            const progress = timestamp - startTimestamp;
+            const timeFraction = Math.pow(progress / duration, 1);
+
+            glowSize = 5 + (maxSize - 5) * timeFraction * speedFactor;
+
+            if (glowSize > maxSize) glowSize = maxSize;
+
+            ctx.globalAlpha = 0.9;
+            drawGlow(x + 5, y - 60);
+
+            if (progress < duration) {
+                requestAnimationFrame((newTime) => growGlow(newTime, startTimestamp, duration, x, y));
+            }
+
+        };
 
     </script>
 </body>

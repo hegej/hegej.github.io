@@ -1,0 +1,16 @@
+const express = require('express');
+const app = express();
+let firstAccess = true;
+
+app.get('/qr', (req, res) => {
+if (firstAccess) {
+res.send("Congratulations, you're the winner!");
+firstAccess = false;
+} else {
+res.send("You did it, but you're not the first.");
+}
+});
+
+app.listen(3000, () => {
+console.log('Server running on http://localhost:3000/');
+});
