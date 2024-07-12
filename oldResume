@@ -57,11 +57,11 @@
       </ul>
       <h1>SKILLS</h1>
       <ul id="skills">
+        <li>Development & Scripting: C++, C#, CSS, Python, HTML, Winforms, PowerShell, Azure DevOps, .NET, GitHub</li>
         <li>Cloud: Microsoft Azure, Privileged Identity Management (PIM), Azure Active Directory</li>
         <li>Network: WiFi, Routing, Cisco, Check Point, Switches</li>
         <li>Operating Systems: Linux, Windows 10/8/7, Windows Server</li>
         <li>Software: MySQL, Microsoft Exchange, Microsoft Visual Studio, Office 365, Microsoft Office</li>
-        <li>Development & Scripting: C++, C#, CSS, Python, HTML, Winforms, PowerShell, Azure DevOps, .NET, GitHub</li>
         <li>Domain Expertise: Configuration Management, Group Policies, User Administration</li>
         <li>Management: GDPR, Onboarding & Offboarding, Project Lead, Project Management</li>
       </ul>
